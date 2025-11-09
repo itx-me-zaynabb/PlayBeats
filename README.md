@@ -25,4 +25,3 @@ It’s inspired by Spotify, but designed with a clean and minimal UI.
    ```bash
    git clone https://github.com/itx-me-zaynabb/PlayBeats.git
 
-![Project Screenshot](photos/PlayBeats.png)

@@ -24,3 +24,5 @@ It’s inspired by Spotify, but designed with a clean and minimal UI.
 1. Clone this repository  
    ```bash
    git clone https://github.com/itx-me-zaynabb/PlayBeats.git
+
+![Project Screenshot](Picturess/PlayBeats.png)

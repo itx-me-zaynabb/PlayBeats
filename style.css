@@ -1,0 +1,302 @@
+/* =========================
+   Playbeats — Clean & Responsive CSS
+   (Replace your existing CSS with this)
+   ========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root{
+  --bg-start: #eec9f2;
+  --bg-end:   #f8e6ff;
+  --nav-grad-1: #9b55a2;
+  --nav-grad-2: #b66ad7;
+  --glass: rgba(0,0,0,0.65);
+  --muted-white: rgba(255,255,255,0.9);
+  --card-bg: rgba(255,255,255,0.12);
+  --card-border: rgba(255,255,255,0.18);
+  --shadow-1: 0 8px 24px rgba(0,0,0,0.4);
+  --focus-color: #ffb3ff;
+  --nav-height: 72px;
+}
+
+/* ---------------- Base reset ---------------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; }
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  color: white;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x: hidden;
+}
+
+/* ---------------- NAVBAR (unchanged structure) ---------------- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, var(--nav-grad-1), var(--nav-grad-2));
+  color: white;
+  padding: 14px 32px;
+  height: var(--nav-height);
+  box-shadow: var(--shadow-1);
+  animation: slideDown 0.6s ease;
+  position: sticky;
+  top: 0;
+  z-index: 120;
+}
+
+/* entrance animation */
+@keyframes slideDown {
+  from { transform: translateY(-60px); opacity: 0; }
+  to   { transform: translateY(0);  opacity: 1; }
+}
+
+/* logo group */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  transition: transform .28s ease, box-shadow .28s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  object-fit: cover;
+}
+
+.logo img:hover { transform: translateY(-3px) rotate(-3deg) scale(1.03); }
+
+.logo h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  line-height: 1;
+}
+
+/* nav links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--muted-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: color .18s ease, transform .18s ease, background .18s ease;
+}
+
+.nav-links a:hover {
+  color: #000; /* per your earlier hover preference */
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.06);
+}
+
+/* ---------------- CONTAINER ---------------- */
+.container {
+  position: relative;
+  min-height: calc(75vh - var(--nav-height));
+  width: 84%;
+  max-width: 1200px;
+  margin: 36px auto;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px;
+  color: white;
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-1);
+}
+
+/* background image layer */
+.container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('photos/istockphoto-1395567847-612x612.jpg') center/cover no-repeat;
+  filter: brightness(0.72);
+  z-index: -1;
+}
+
+/* ---------------- SONG LIST ---------------- */
+.songItemContainer { margin-top: 28px; }
+
+/* each item */
+.songItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 10px 16px;
+  margin: 10px 0;
+  transition: transform .22s ease, background .22s ease, box-shadow .22s ease;
+}
+
+.songItem:hover {
+  background: rgba(255,255,255,0.20);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+/* thumb */
+.songItem img {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 16px;
+  transition: transform .22s ease;
+}
+
+.songItem:hover img { transform: scale(1.07); }
+
+/* main text area */
+.songName {
+  flex: 1 1 auto;
+  font-weight: 500;
+  color: #fff;
+  padding: 0 8px;
+  word-break: break-word;
+}
+
+/* time + play icon */
+.timestamp {
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+.timestamp i {
+  color: #fff;
+  cursor: pointer;
+  transition: color .18s ease, transform .18s ease;
+}
+
+.timestamp i:hover { color: var(--focus-color); transform: scale(1.08); }
+
+/* ---------------- BOTTOM PLAYER ---------------- */
+.bottom {
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(90deg, var(--nav-grad-1), var(--nav-grad-2));
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 -6px 20px rgba(0,0,0,0.22);
+}
+
+/* progress */
+#myProgressBar {
+  width: 86%;
+  max-width: 980px;
+  accent-color: white;
+  cursor: pointer;
+}
+
+/* icons row */
+.icons {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+.icons i {
+  cursor: pointer;
+  transition: transform .18s ease, color .18s ease;
+  font-size: 1.4rem;
+}
+
+.icons i:hover { color: var(--focus-color); transform: translateY(-3px) scale(1.06); }
+
+/* song info */
+.songInfo {
+  margin-top: 4px;
+  font-size: 0.95rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.songInfo img {
+  width: 40px;
+  opacity: 0;
+  transition: opacity .32s ease-in;
+}
+
+/* ---------------- RESPONSIVE LAYOUT ---------------- */
+
+/* large tablets */
+@media (
+  max-width: 1024px
+  ) 
+{
+  :root { --nav-height: 68px; }
+  .container { width: 90%; 
+    padding: 24px;
+     min-height:  calc(72vh - var(--nav-height)); 
+    }
+  .songItem img {
+     width: 52px; 
+    height: 52px;
+   }
+  #myProgressBar {
+     width: 92%; }
+}
+
+/* tablets / small laptops */
+@media (max-width: 768px) {
+  .header { padding: 12px 18px; }
+  .logo img { width: 44px; height: 44px; }
+  .logo h1 { font-size: 1.05rem; }
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: 0.95rem; padding: 6px 8px; }
+  .container { padding: 20px; width: 94%; min-height: calc(70vh - var(--nav-height)); }
+  .songItem { padding: 12px; gap: 8px; flex-direction: row; }
+  .songName { padding: 0 10px; }
+}
+
+/* phones */
+@media (max-width: 480px) {
+  .header { padding: 10px 14px; height: auto; align-items: center; gap: 12px; }
+  .logo img { width: 40px; height: 40px; }
+  .logo h1 { font-size: 0.98rem; }
+  .nav-links { gap: 10px; }
+  .nav-links a { font-size: 0.92rem; }
+  .container { width: 96%; padding: 16px; border-radius: 12px; }
+  .songItem { flex-direction: column; align-items: flex-start; gap: 8px; padding: 10px; }
+  .songItem img { width: 100%; max-width: 120px; height: auto; border-radius: 8px; }
+  .timestamp { align-self: flex-end; }
+  #myProgressBar { width: 96vw; }
+  .icons i { font-size: 1.15rem; }
+  .songInfo { font-size: 0.9rem; flex-direction: row; gap: 8px; }
+}
+
+/* small polish */
+a:focus,
+ button:focus,
+  input:focus { 
+  outline: 3px solid rgba(255,179,255,0.12); outline-offset: 2px; 
+  border-radius: 6px; }
